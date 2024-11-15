@@ -53,6 +53,6 @@ const fs = require('fs'); // Use for saving results to a file
     });
 
     // Save the data to results.json
-    fs.writeFileSync('results.json', JSON.stringify(productImageMap, null, 2));
+    fs.writeFileSync('../results.json', JSON.stringify(productImageMap, null, 2));
     console.log('The product-image pairs have been saved to "results.json".');
 })();

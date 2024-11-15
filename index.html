@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Table with Pagination</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        img {
+            max-width: 100px;
+        }
+
+        .pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .pagination button {
+            margin: 0 5px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Products</h1>
+
+<table id="productTable">
+    <thead>
+    <tr>
+        <th>Product</th>
+        <th>Image</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Product rows will be appended here -->
+    </tbody>
+</table>
+
+<div class="pagination">
+    <button id="prevPage">Previous</button>
+    <div id="pageNumber">Page: 1</div>
+    <button id="nextPage">Next</button>
+</div>
+
+<script>
+    const itemsPerPage = 10;
+    let currentPage = 1;
+    let products = [];
+
+    // Fetch data from the results.json file
+    function fetchData() {
+        fetch('https://raw.githubusercontent.com/0-sv/scrape-ah/refs/heads/main/results.json')
+            .then(response => response.json())
+            .then(data => {
+                products = data;
+                renderTable();
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }
+
+    // Render product table data based on the current page
+    function renderTable() {
+        const productTableBody = document.querySelector('#productTable tbody');
+        productTableBody.innerHTML = ''; // Clear previous table data
+
+        // Calculate the slice of products to display for the current page
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const productsToShow = products.slice(start, end);
+
+        // Loop through the selected products and append rows to the table
+        productsToShow.forEach(product => {
+            const row = document.createElement('tr');
+            const productCell = document.createElement('td');
+            const imageCell = document.createElement('td');
+            const productLink = document.createElement('a');
+            const productImage = document.createElement('img');
+
+            productLink.href = product.productUrl;
+            productLink.textContent = product.productUrl;
+
+            productImage.src = product.imgSrc;
+            productImage.alt = 'Product Image';
+
+            productCell.appendChild(productLink);
+            imageCell.appendChild(productImage);
+
+            row.appendChild(productCell);
+            row.appendChild(imageCell);
+            productTableBody.appendChild(row);
+        });
+
+        // Update the page number display
+        document.getElementById('pageNumber').textContent = `Page: ${currentPage}`;
+    }
+
+    // Event listeners for pagination buttons
+    document.getElementById('prevPage').addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            renderTable();
+        }
+    });
+
+    document.getElementById('nextPage').addEventListener('click', () => {
+        const maxPages = Math.ceil(products.length / itemsPerPage);
+        if (currentPage < maxPages) {
+            currentPage++;
+            renderTable();
+        }
+    });
+
+    // Initial data fetch and table rendering
+    fetchData();
+</script>
+</body>
+</html>
