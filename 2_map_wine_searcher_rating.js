@@ -54,14 +54,39 @@ const stealth = require("puppeteer-extra-plugin-stealth")();
         });
 
         if (hasCaptcha) {
-          console.log(
-            "Captcha detected - waiting for 1 minute before opening new window...",
-          );
-          await new Promise(resolve => setTimeout(resolve, 60000)); // Wait for 60 seconds
-          await page.close();
-          page = await browser.newPage();
-          await page.setViewportSize({ width: 1280, height: 720 });
-          await page.goto(product.wineSearcherUrl);
+          let waitTimeMinutes = 1;
+          let maxAttempts = 5; // Maximum number of attempts before giving up
+          let attempt = 1;
+          
+          while (attempt <= maxAttempts) {
+            console.log(
+              `Captcha detected - waiting for ${waitTimeMinutes} minute(s) before retrying (attempt ${attempt}/${maxAttempts})...`
+            );
+            
+            await new Promise(resolve => setTimeout(resolve, waitTimeMinutes * 60000));
+            
+            // Check if captcha is still present
+            const captchaStillPresent = await page.evaluate(() => {
+              return document.body.textContent.includes("Press & Hold");
+            });
+            
+            if (!captchaStillPresent) {
+              console.log("Captcha cleared successfully!");
+              break;
+            }
+            
+            if (attempt < maxAttempts) {
+              waitTimeMinutes *= 2; // Double the wait time for next attempt
+              attempt++;
+              await page.reload(); // Reload the page for next attempt
+            } else {
+              console.log("Max attempts reached. Creating new page...");
+              await page.close();
+              page = await browser.newPage();
+              await page.setViewportSize({ width: 1280, height: 720 });
+              await page.goto(product.wineSearcherUrl);
+            }
+          }
         }
 
         // Check if page shows "Showing results for"
