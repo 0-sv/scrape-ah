@@ -1,3 +1,4 @@
-1_scrape_ah/node_modules
+node_modules
 .aider*
 .env
+.idea
