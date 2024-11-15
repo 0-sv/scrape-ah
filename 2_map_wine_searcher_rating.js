@@ -9,6 +9,8 @@ const randomDelay = async (min = 1000, max = 3000) => {
 };
 
 (async () => {
+  let lastProcessedIndex = -1;
+  
   try {
     // Read the results.json file
     const filePath = path.resolve(__dirname, "results.json");
