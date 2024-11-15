@@ -2,7 +2,7 @@
   "name": "scrape-ah",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "1_scrape_ah.js",
   "scripts": {},
   "keywords": [],
   "author": "",
