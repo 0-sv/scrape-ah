@@ -23,19 +23,14 @@ const randomDelay = async (min = 1000, max = 3000) => {
       headless: false, // Run in a non-headless mode so you can see what's happening
     });
 
-    // Create an incognito context (like a new browser session)
-    const context = await browser.newContext({
-      userAgent, // Set the user agent here
-      viewport: {
-        width: 1280, // Set a desktop resolution
-        height: 720,
-      },
-      locale: "nl-NL", // Set a realistic locale
-      timezoneId: "Europe/Amsterdam", // Set a correct timezone based on location
-      deviceScaleFactor: 1, // Standard scale
+    // Create a new page directly from the browser
+    const page = await browser.newPage();
+    
+    // Configure the page
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.setExtraHTTPHeaders({
+      'User-Agent': userAgent
     });
-
-    const page = await context.newPage();
 
     // Get first product only
     const firstProduct = products[0];
