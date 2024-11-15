@@ -1,6 +1,7 @@
 const fs = require("fs").promises;
 const path = require("path");
 const { chromium } = require("playwright");
+require('dotenv').config();
 
 // Helper function to create a random delay
 const randomDelay = async (min = 1000, max = 3000) => {
@@ -37,7 +38,8 @@ const randomDelay = async (min = 1000, max = 3000) => {
     let lastProcessedIndex = -1;
 
     // Loop through all products
-    for (let i = 3; i < products.length; i++) {
+    const startIndex = process.env.INITIAL_ITEM_TO_PROCESS ? parseInt(process.env.INITIAL_ITEM_TO_PROCESS) : 3;
+    for (let i = startIndex; i < products.length; i++) {
       try {
         const product = products[i];
         console.log(
