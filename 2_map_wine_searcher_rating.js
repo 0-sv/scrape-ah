@@ -70,6 +70,28 @@ const randomDelay = async (min = 1000, max = 3000) => {
 
         await randomDelay();
 
+        // Check if page shows "Showing results for"
+        const hasSearchResults = await page.evaluate(() => {
+          return document.body.textContent.includes('Showing results for');
+        });
+
+        if (hasSearchResults) {
+          console.log('Search results page detected - skipping detailed scraping');
+          const scrapedData = {
+            criticScore: null,
+            userRating: null,
+            amountOfUserRatings: null,
+            style: null,
+            grapeVariety: null,
+            foodPairing: null
+          };
+          Object.assign(product, scrapedData);
+          await fs.writeFile(filePath, JSON.stringify(products, null, 2));
+          lastProcessedIndex = i;
+          await randomDelay(3000, 5000);
+          continue;
+        }
+
         // Wait for the profile section to load
         await page.waitForSelector(".prod-profile_rcs");
 
