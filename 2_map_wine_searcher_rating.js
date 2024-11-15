@@ -35,14 +35,14 @@ const stealth = require("puppeteer-extra-plugin-stealth")();
     let lastProcessedIndex = -1;
 
     // Loop through all products
-    const startIndex = process.env.LAST_ITEM_PROCESSED
-      ? parseInt(process.env.LAST_ITEM_PROCESSED)
+    const startIndex = process.env.LAST_ITEM_SUCCESSFULLY_PROCESSED
+      ? parseInt(process.env.LAST_ITEM_SUCCESSFULLY_PROCESSED)
       : 0;
     for (let i = startIndex; i < products.length; i++) {
       try {
         const product = products[i];
         console.log(
-          `Processing product ${i + 1}/${products.length}: ${product.productUrl}`,
+          `Processing product ${i + 1}/${products.length}: ${product.wineSearcherUrl}`,
         );
 
         // Visit wine-searcher.com using the pre-built URL
@@ -58,8 +58,6 @@ const stealth = require("puppeteer-extra-plugin-stealth")();
             "Captcha detected - clearing cookies and opening new window...",
           );
           await page.close();
-          const context = browser.contexts()[0];
-          await context.clearCookies();
           page = await browser.newPage();
           await page.setViewportSize({ width: 1280, height: 720 });
           await page.goto(product.wineSearcherUrl);
