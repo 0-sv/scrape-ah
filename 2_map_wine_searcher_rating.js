@@ -32,11 +32,16 @@ const randomDelay = async (min = 1000, max = 3000) => {
       "User-Agent": userAgent,
     });
 
-    // Get first product only
-    const firstProduct = products[0];
+    let lastProcessedIndex = -1;
 
-    // Visit wine-searcher.com using the pre-built URL
-    await page.goto(firstProduct.wineSearcherUrl);
+    // Loop through all products
+    for (let i = 0; i < products.length; i++) {
+      try {
+        const product = products[i];
+        console.log(`Processing product ${i + 1}/${products.length}: ${product.title}`);
+
+        // Visit wine-searcher.com using the pre-built URL
+        await page.goto(product.wineSearcherUrl);
 
     // Random delay after page load
     await randomDelay(2000, 4000);
@@ -133,26 +138,39 @@ const randomDelay = async (min = 1000, max = 3000) => {
       return null;
     });
 
-    // Create a new object for the scraped data
-    const scrapedData = {
-      criticScore,
-      userRating,
-      amountOfUserRatings,
-      style,
-      grapeVariety,
-      foodPairing,
-    };
+        // Create a new object for the scraped data
+        const scrapedData = {
+          criticScore,
+          userRating,
+          amountOfUserRatings,
+          style,
+          grapeVariety,
+          foodPairing,
+        };
 
-    console.log(JSON.stringify(scrapedData, null, 2));
+        console.log(JSON.stringify(scrapedData, null, 2));
 
-    // Merge the scraped data with the first product data
-    Object.assign(firstProduct, scrapedData);
+        // Merge the scraped data with the current product
+        Object.assign(product, scrapedData);
 
-    // Write back the entire array of products to results.json
-    await fs.writeFile(filePath, JSON.stringify(products, null, 2));
+        // Write back after each successful scrape
+        await fs.writeFile(filePath, JSON.stringify(products, null, 2));
+        lastProcessedIndex = i;
+        
+        // Add a delay between requests
+        await randomDelay(3000, 5000);
+      } catch (error) {
+        console.error(`Error processing product ${i + 1}:`, error);
+        throw error;
+      }
+    }
 
-    console.log("File successfully written!");
+    console.log("All products processed successfully!");
   } catch (error) {
     console.error("Error:", error);
+    if (lastProcessedIndex >= 0) {
+      console.log(`Last successfully processed product index: ${lastProcessedIndex}`);
+      console.log(`Resume from index ${lastProcessedIndex + 1} after fixing the error`);
+    }
   }
 })();
