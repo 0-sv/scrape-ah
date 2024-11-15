@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Table with Pagination</title>
+    <title>Product Table with Pagination and Sorting</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/alvaromontoro/almond.css@latest/dist/almond.min.css"/>
-
 </head>
 <body>
 <h1>Products</h1>
@@ -13,8 +12,11 @@
 <table id="productTable">
     <thead>
     <tr>
+        <!-- Sort indicators and click events added to the headers -->
         <th>Product</th>
         <th>Image</th>
+        <th id="sortPrice">Price</th> <!-- Sortable by price -->
+        <th id="sortUnitSize">Unit Size</th> <!-- Sortable by unit size -->
     </tr>
     </thead>
     <tbody>
@@ -32,6 +34,8 @@
     const itemsPerPage = 10;
     let currentPage = 1;
     let products = [];
+    let sortDirectionPrice = 1; // 1 for ascending, -1 for descending
+    let sortDirectionUnitSize = 1; // 1 for ascending, -1 for descending
 
     // Fetch data from the results.json file
     function fetchData() {
@@ -57,28 +61,72 @@
         // Loop through the selected products and append rows to the table
         productsToShow.forEach(product => {
             const row = document.createElement('tr');
+
+            // Create the table cells for product, image, price, and unit size
             const productCell = document.createElement('td');
             const imageCell = document.createElement('td');
-            const productLink = document.createElement('a');
-            const productImage = document.createElement('img');
+            const priceCell = document.createElement('td');
+            const unitSizeCell = document.createElement('td');
 
+            // Create product link element
+            const productLink = document.createElement('a');
             productLink.href = product.productUrl;
             productLink.textContent = product.productUrl;
 
+            // Create image element
+            const productImage = document.createElement('img');
             productImage.src = product.imgSrc;
             productImage.alt = 'Product Image';
+            productImage.style.width = '50px';  // Adjust image size for table
 
+            // Populate price and unit size fields
+            priceCell.textContent = product.price || 'N/A';  // Display 'N/A' if no price available
+            unitSizeCell.textContent = product.unitSize || 'N/A';  // Display 'N/A' if no unit size available
+
+            // Append elements to the respective table cells
             productCell.appendChild(productLink);
             imageCell.appendChild(productImage);
 
+            // Append the cells to the row
             row.appendChild(productCell);
             row.appendChild(imageCell);
+            row.appendChild(priceCell);
+            row.appendChild(unitSizeCell);
+
+            // Append the row to the table body
             productTableBody.appendChild(row);
         });
 
         // Update the page number display
         document.getElementById('pageNumber').textContent = `Page: ${currentPage}`;
     }
+
+    // Sorting functions
+    function sortByPrice() {
+        products.sort((a, b) => {
+            // Safely handle cases where price is not a valid string or number
+            const priceA = a?.price
+            const priceB = b?.price
+            return (priceA - priceB) * sortDirectionPrice;
+        });
+        sortDirectionPrice *= -1; // Toggle between ascending and descending
+        renderTable();  // Re-render the table after sorting
+    }
+
+    function sortByUnitSize() {
+        products.sort((a, b) => {
+            // Safely handle cases where unitSize is not a valid string or number
+            const sizeA = parseFloat(a?.unitSize?.replace(/[^0-9.-]+/g, '')) || 0;
+            const sizeB = parseFloat(b?.unitSize?.replace(/[^0-9.-]+/g, '')) || 0;
+            return (sizeA - sizeB) * sortDirectionUnitSize;
+        });
+        sortDirectionUnitSize *= -1; // Toggle between ascending and descending
+        renderTable();  // Re-render the table after sorting
+    }
+
+    // Event listeners for table headers (sorting)
+    document.getElementById('sortPrice').addEventListener('click', sortByPrice);
+    document.getElementById('sortUnitSize').addEventListener('click', sortByUnitSize);
 
     // Event listeners for pagination buttons
     document.getElementById('prevPage').addEventListener('click', () => {
