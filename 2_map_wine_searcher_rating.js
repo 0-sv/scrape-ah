@@ -2,6 +2,12 @@ const fs = require("fs").promises;
 const path = require("path");
 const { chromium } = require("playwright");
 
+// Helper function to create a random delay
+const randomDelay = async (min = 1000, max = 3000) => {
+  const delay = Math.floor(Math.random() * (max - min + 1) + min);
+  await new Promise(resolve => setTimeout(resolve, delay));
+};
+
 (async () => {
   try {
     // Read the results.json file
@@ -36,9 +42,45 @@ const { chromium } = require("playwright");
 
     // Visit wine-searcher.com using the pre-built URL
     await page.goto(firstProduct.wineSearcherUrl);
+    
+    // Random delay after page load
+    await randomDelay(2000, 4000);
+
+    // Perform some random mouse movements
+    await page.mouse.move(
+      Math.random() * 1000,
+      Math.random() * 500
+    );
+
+    // Scroll down slowly like a human
+    await page.evaluate(() => {
+      return new Promise((resolve) => {
+        let totalHeight = 0;
+        const distance = 100;
+        const timer = setInterval(() => {
+          window.scrollBy(0, distance);
+          totalHeight += distance;
+          
+          if(totalHeight >= document.body.scrollHeight * 0.7){
+            clearInterval(timer);
+            resolve();
+          }
+        }, 100);
+      });
+    });
+
+    await randomDelay();
 
     // Wait for the profile section to load
     await page.waitForSelector(".prod-profile_rcs");
+    
+    // Move mouse to the profile section
+    const profileElement = await page.$(".prod-profile_rcs");
+    const box = await profileElement.boundingBox();
+    await page.mouse.move(
+      box.x + box.width / 2,
+      box.y + box.height / 2
+    );
 
     // Extract Critic Score
     const criticScore = await page.evaluate(() => {
