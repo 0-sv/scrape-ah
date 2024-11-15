@@ -55,8 +55,9 @@ const stealth = require("puppeteer-extra-plugin-stealth")();
 
         if (hasCaptcha) {
           console.log(
-            "Captcha detected - clearing cookies and opening new window...",
+            "Captcha detected - waiting for 1 minute before opening new window...",
           );
+          await new Promise(resolve => setTimeout(resolve, 60000)); // Wait for 60 seconds
           await page.close();
           page = await browser.newPage();
           await page.setViewportSize({ width: 1280, height: 720 });
