@@ -57,8 +57,13 @@ const path = require('path');
                     // Extract the unit size text as is
                     const unitSize = unitSizeElement.textContent.trim();
 
+                    // Create wine searcher URL from last segment of product URL
+                    const urlPath = new URL(productUrl).pathname;
+                    const lastSegment = urlPath.split('/').pop();
+                    const wineSearcherUrl = `https://www.wine-searcher.com/find/${lastSegment}`;
+
                     // Push the data into the array
-                    productItems.push({productUrl, imgSrc, price, unitSize});
+                    productItems.push({productUrl, imgSrc, price, unitSize, wineSearcherUrl});
                 }
             }
         });
