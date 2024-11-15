@@ -27,9 +27,6 @@ const {chromium} = require('playwright');
 
         // Wait a bit to see the result
         await page.waitForTimeout(5000);
-
-        await browser.close();
-
     } catch (error) {
         console.error('Error:', error);
     }
