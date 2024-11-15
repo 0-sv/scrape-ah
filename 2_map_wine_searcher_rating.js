@@ -35,108 +35,110 @@ const randomDelay = async (min = 1000, max = 3000) => {
     let lastProcessedIndex = -1;
 
     // Loop through all products
-    for (let i = 0; i < products.length; i++) {
+    for (let i = 2; i < products.length; i++) {
       try {
         const product = products[i];
-        console.log(`Processing product ${i + 1}/${products.length}: ${product.title}`);
+        console.log(
+          `Processing product ${i + 1}/${products.length}: ${product.productUrl}`,
+        );
 
         // Visit wine-searcher.com using the pre-built URL
         await page.goto(product.wineSearcherUrl);
 
-    // Random delay after page load
-    await randomDelay(2000, 4000);
+        // Random delay after page load
+        await randomDelay(2000, 4000);
 
-    // Perform some random mouse movements
-    await page.mouse.move(Math.random() * 1000, Math.random() * 500);
+        // Perform some random mouse movements
+        await page.mouse.move(Math.random() * 1000, Math.random() * 500);
 
-    // Scroll down slowly like a human
-    await page.evaluate(() => {
-      return new Promise((resolve) => {
-        let totalHeight = 0;
-        const distance = 100;
-        const timer = setInterval(() => {
-          window.scrollBy(0, distance);
-          totalHeight += distance;
+        // Scroll down slowly like a human
+        await page.evaluate(() => {
+          return new Promise((resolve) => {
+            let totalHeight = 0;
+            const distance = 100;
+            const timer = setInterval(() => {
+              window.scrollBy(0, distance);
+              totalHeight += distance;
 
-          if (totalHeight >= document.body.scrollHeight * 0.7) {
-            clearInterval(timer);
-            resolve();
+              if (totalHeight >= document.body.scrollHeight * 0.7) {
+                clearInterval(timer);
+                resolve();
+              }
+            }, 100);
+          });
+        });
+
+        await randomDelay();
+
+        // Wait for the profile section to load
+        await page.waitForSelector(".prod-profile_rcs");
+
+        // Move mouse to the profile section
+        const profileElement = await page.$(".prod-profile_rcs");
+        const box = await profileElement.boundingBox();
+        await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+
+        // Extract Critic Score
+        const criticScore = await page.evaluate(() => {
+          const element = document.querySelector(
+            ".prod-profile_rcs .badge-rating span:first-child",
+          );
+          return element ? parseInt(element.textContent.trim(), 10) : null;
+        });
+
+        // Extract User Rating
+        const userRating = await page.evaluate(() => {
+          const element = document.querySelector(".prod-profile_rcs .rating");
+          if (!element || !element.getAttribute("aria-label")) return null;
+          const match = element
+            .getAttribute("aria-label")
+            .match(/Rating ([\d.]+) of 5/);
+          return match ? parseFloat(match[1]) : null;
+        });
+
+        // Extract Amount of User Ratings
+        const amountOfUserRatings = await page.evaluate(() => {
+          const element = document.querySelector(
+            ".prod-profile_rcs .font-light-bold",
+          );
+          return element ? parseInt(element.textContent.trim(), 10) : null;
+        });
+
+        // Extract Wine Style
+        const style = await page.evaluate(() => {
+          const elements = document.querySelectorAll(".prod-profile_rcs li");
+          for (const el of elements) {
+            if (el.textContent.includes("Style")) {
+              const boldEl = el.querySelector(".font-light-bold");
+              return boldEl ? boldEl.textContent.trim() : null;
+            }
           }
-        }, 100);
-      });
-    });
+          return null;
+        });
 
-    await randomDelay();
+        // Extract Grape Variety
+        const grapeVariety = await page.evaluate(() => {
+          const elements = document.querySelectorAll(".prod-profile_rcs li");
+          for (const el of elements) {
+            if (el.textContent.includes("Grape Variety")) {
+              const boldEl = el.querySelector(".font-light-bold");
+              return boldEl ? boldEl.textContent.trim() : null;
+            }
+          }
+          return null;
+        });
 
-    // Wait for the profile section to load
-    await page.waitForSelector(".prod-profile_rcs");
-
-    // Move mouse to the profile section
-    const profileElement = await page.$(".prod-profile_rcs");
-    const box = await profileElement.boundingBox();
-    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
-
-    // Extract Critic Score
-    const criticScore = await page.evaluate(() => {
-      const element = document.querySelector(
-        ".prod-profile_rcs .badge-rating span:first-child",
-      );
-      return element ? parseInt(element.textContent.trim(), 10) : null;
-    });
-
-    // Extract User Rating
-    const userRating = await page.evaluate(() => {
-      const element = document.querySelector(".prod-profile_rcs .rating");
-      if (!element || !element.getAttribute("aria-label")) return null;
-      const match = element
-        .getAttribute("aria-label")
-        .match(/Rating ([\d.]+) of 5/);
-      return match ? parseFloat(match[1]) : null;
-    });
-
-    // Extract Amount of User Ratings
-    const amountOfUserRatings = await page.evaluate(() => {
-      const element = document.querySelector(
-        ".prod-profile_rcs .font-light-bold",
-      );
-      return element ? parseInt(element.textContent.trim(), 10) : null;
-    });
-
-    // Extract Wine Style
-    const style = await page.evaluate(() => {
-      const elements = document.querySelectorAll(".prod-profile_rcs li");
-      for (const el of elements) {
-        if (el.textContent.includes("Style")) {
-          const boldEl = el.querySelector(".font-light-bold");
-          return boldEl ? boldEl.textContent.trim() : null;
-        }
-      }
-      return null;
-    });
-
-    // Extract Grape Variety
-    const grapeVariety = await page.evaluate(() => {
-      const elements = document.querySelectorAll(".prod-profile_rcs li");
-      for (const el of elements) {
-        if (el.textContent.includes("Grape Variety")) {
-          const boldEl = el.querySelector(".font-light-bold");
-          return boldEl ? boldEl.textContent.trim() : null;
-        }
-      }
-      return null;
-    });
-
-    // Extract Food Pairing
-    const foodPairing = await page.evaluate(() => {
-      const elements = document.querySelectorAll(".prod-profile_rcs li");
-      for (const el of elements) {
-        if (el.textContent.includes("Food Pairing")) {
-          const boldEl = el.querySelector(".font-light-bold");
-          return boldEl ? boldEl.textContent.trim() : null;
-        }
-      }
-      return null;
-    });
+        // Extract Food Pairing
+        const foodPairing = await page.evaluate(() => {
+          const elements = document.querySelectorAll(".prod-profile_rcs li");
+          for (const el of elements) {
+            if (el.textContent.includes("Food Pairing")) {
+              const boldEl = el.querySelector(".font-light-bold");
+              return boldEl ? boldEl.textContent.trim() : null;
+            }
+          }
+          return null;
+        });
 
         // Create a new object for the scraped data
         const scrapedData = {
@@ -156,7 +158,7 @@ const randomDelay = async (min = 1000, max = 3000) => {
         // Write back after each successful scrape
         await fs.writeFile(filePath, JSON.stringify(products, null, 2));
         lastProcessedIndex = i;
-        
+
         // Add a delay between requests
         await randomDelay(3000, 5000);
       } catch (error) {
@@ -169,8 +171,12 @@ const randomDelay = async (min = 1000, max = 3000) => {
   } catch (error) {
     console.error("Error:", error);
     if (lastProcessedIndex >= 0) {
-      console.log(`Last successfully processed product index: ${lastProcessedIndex}`);
-      console.log(`Resume from index ${lastProcessedIndex + 1} after fixing the error`);
+      console.log(
+        `Last successfully processed product index: ${lastProcessedIndex}`,
+      );
+      console.log(
+        `Resume from index ${lastProcessedIndex + 1} after fixing the error`,
+      );
     }
   }
 })();
