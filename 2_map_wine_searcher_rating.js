@@ -1,7 +1,9 @@
 const fs = require("fs").promises;
 const path = require("path");
-const { chromium } = require("playwright");
-require('dotenv').config();
+const { chromium } = require("playwright-extra");
+require("dotenv").config();
+
+const stealth = require("puppeteer-extra-plugin-stealth")();
 
 // Helper function to create a random delay
 const randomDelay = async (min = 1000, max = 3000) => {
@@ -11,7 +13,8 @@ const randomDelay = async (min = 1000, max = 3000) => {
 
 (async () => {
   let lastProcessedIndex = -1;
-  
+  chromium.use(stealth);
+
   try {
     // Read the results.json file
     const filePath = path.resolve(__dirname, "results.json");
@@ -38,7 +41,9 @@ const randomDelay = async (min = 1000, max = 3000) => {
     let lastProcessedIndex = -1;
 
     // Loop through all products
-    const startIndex = process.env.INITIAL_ITEM_TO_PROCESS ? parseInt(process.env.INITIAL_ITEM_TO_PROCESS) : 3;
+    const startIndex = process.env.INITIAL_ITEM_TO_PROCESS
+      ? parseInt(process.env.INITIAL_ITEM_TO_PROCESS)
+      : 0;
     for (let i = startIndex; i < products.length; i++) {
       try {
         const product = products[i];
