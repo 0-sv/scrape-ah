@@ -49,6 +49,18 @@ const stealth = require("puppeteer-extra-plugin-stealth")();
         // Visit wine-searcher.com using the pre-built URL
         await page.goto(product.wineSearcherUrl);
 
+        // Check for captcha
+        const hasCaptcha = await page.evaluate(() => {
+          return document.body.textContent.includes("Verify you are human");
+        });
+
+        if (hasCaptcha) {
+          console.log("Captcha detected - opening new window and continuing...");
+          await page.close();
+          page = await browser.newPage();
+          await page.setViewportSize({ width: 1280, height: 720 });
+          await page.goto(product.wineSearcherUrl);
+        }
 
         // Check if page shows "Showing results for"
         const hasSearchResults = await page.evaluate(() => {
