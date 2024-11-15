@@ -44,9 +44,9 @@ const path = require('path');
             if (link.href.includes('/product/')) {
                 const img = link.querySelector('img[src^="https://static.ah.nl/"]');
                 const priceElement = link.closest('article')?.querySelector('[data-testhook="price-amount"] .sr-only[aria-label^="Prijs:"]');
-                console.log(priceElement)
+                const unitSizeElement = link.closest('article')?.querySelector('[data-testhook="product-unit-size"]');
 
-                if (img && priceElement) {
+                if (img && priceElement && unitSizeElement) {
                     const productUrl = link.href;
                     const imgSrc = img.src;
 
@@ -54,7 +54,11 @@ const path = require('path');
                     const priceText = priceElement.getAttribute('aria-label');
                     const price = parseFloat(priceText.replace(/[^\d,.-]+/g, '').replace(',', '.')); // Remove '€' and convert comma to dot
 
-                    productItems.push({productUrl, imgSrc, price});
+                    // Extract the unit size text as is
+                    const unitSize = unitSizeElement.textContent.trim();
+
+                    // Push the data into the array
+                    productItems.push({productUrl, imgSrc, price, unitSize});
                 }
             }
         });
@@ -73,4 +77,6 @@ const path = require('path');
     } catch (error) {
         console.error('Error writing file:', error);
     }
+
+    await browser.close()
 })();
