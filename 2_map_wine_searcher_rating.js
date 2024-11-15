@@ -9,11 +9,26 @@ const { chromium } = require("playwright");
     const data = await fs.readFile(filePath, "utf8");
     const products = JSON.parse(data);
 
-    // Launch browser
+    // Define a realistic user-agent
+    const userAgent = "Chrome/93.0.4577.63";
+
+    // Launch Chromium in headless mode, but with realistic settings
     const browser = await chromium.launch({
-      headless: false,
+      headless: false, // Run in a non-headless mode so you can see what's happening
     });
-    const context = await browser.newContext();
+
+    // Create an incognito context (like a new browser session)
+    const context = await browser.newContext({
+      userAgent, // Set the user agent here
+      viewport: {
+        width: 1280, // Set a desktop resolution
+        height: 720,
+      },
+      locale: "nl-NL", // Set a realistic locale
+      timezoneId: "Europe/Amsterdam", // Set a correct timezone based on location
+      deviceScaleFactor: 1, // Standard scale
+    });
+
     const page = await context.newPage();
 
     // Get first product only
@@ -21,36 +36,42 @@ const { chromium } = require("playwright");
 
     // Visit wine-searcher.com using the pre-built URL
     await page.goto(firstProduct.wineSearcherUrl);
-    
+
     // Wait for the profile section to load
-    await page.waitForSelector('.prod-profile_rcs');
+    await page.waitForSelector(".prod-profile_rcs");
 
     // Extract Critic Score
     const criticScore = await page.evaluate(() => {
-      const element = document.querySelector('.prod-profile_rcs .badge-rating span:first-child');
+      const element = document.querySelector(
+        ".prod-profile_rcs .badge-rating span:first-child",
+      );
       return element ? parseInt(element.textContent.trim(), 10) : null;
     });
 
     // Extract User Rating
     const userRating = await page.evaluate(() => {
-      const element = document.querySelector('.prod-profile_rcs .rating');
-      if (!element || !element.getAttribute('aria-label')) return null;
-      const match = element.getAttribute('aria-label').match(/Rating ([\d.]+) of 5/);
+      const element = document.querySelector(".prod-profile_rcs .rating");
+      if (!element || !element.getAttribute("aria-label")) return null;
+      const match = element
+        .getAttribute("aria-label")
+        .match(/Rating ([\d.]+) of 5/);
       return match ? parseFloat(match[1]) : null;
     });
 
     // Extract Amount of User Ratings
     const amountOfUserRatings = await page.evaluate(() => {
-      const element = document.querySelector('.prod-profile_rcs .font-light-bold');
+      const element = document.querySelector(
+        ".prod-profile_rcs .font-light-bold",
+      );
       return element ? parseInt(element.textContent.trim(), 10) : null;
     });
 
     // Extract Wine Style
     const style = await page.evaluate(() => {
-      const elements = document.querySelectorAll('.prod-profile_rcs li');
+      const elements = document.querySelectorAll(".prod-profile_rcs li");
       for (const el of elements) {
-        if (el.textContent.includes('Style')) {
-          const boldEl = el.querySelector('.font-light-bold');
+        if (el.textContent.includes("Style")) {
+          const boldEl = el.querySelector(".font-light-bold");
           return boldEl ? boldEl.textContent.trim() : null;
         }
       }
@@ -59,10 +80,10 @@ const { chromium } = require("playwright");
 
     // Extract Grape Variety
     const grapeVariety = await page.evaluate(() => {
-      const elements = document.querySelectorAll('.prod-profile_rcs li');
+      const elements = document.querySelectorAll(".prod-profile_rcs li");
       for (const el of elements) {
-        if (el.textContent.includes('Grape Variety')) {
-          const boldEl = el.querySelector('.font-light-bold');
+        if (el.textContent.includes("Grape Variety")) {
+          const boldEl = el.querySelector(".font-light-bold");
           return boldEl ? boldEl.textContent.trim() : null;
         }
       }
@@ -71,10 +92,10 @@ const { chromium } = require("playwright");
 
     // Extract Food Pairing
     const foodPairing = await page.evaluate(() => {
-      const elements = document.querySelectorAll('.prod-profile_rcs li');
+      const elements = document.querySelectorAll(".prod-profile_rcs li");
       for (const el of elements) {
-        if (el.textContent.includes('Food Pairing')) {
-          const boldEl = el.querySelector('.font-light-bold');
+        if (el.textContent.includes("Food Pairing")) {
+          const boldEl = el.querySelector(".font-light-bold");
           return boldEl ? boldEl.textContent.trim() : null;
         }
       }
@@ -87,7 +108,7 @@ const { chromium } = require("playwright");
       amountOfUserRatings,
       style,
       grapeVariety,
-      foodPairing
+      foodPairing,
     });
   } catch (error) {
     console.error("Error:", error);
