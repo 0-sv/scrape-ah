@@ -47,20 +47,38 @@ const { chromium } = require("playwright");
 
     // Extract Wine Style
     const style = await page.evaluate(() => {
-      const element = document.querySelector('.prod-profile_rcs li:has-text("Style") .font-light-bold');
-      return element ? element.textContent.trim() : null;
+      const elements = document.querySelectorAll('.prod-profile_rcs li');
+      for (const el of elements) {
+        if (el.textContent.includes('Style')) {
+          const boldEl = el.querySelector('.font-light-bold');
+          return boldEl ? boldEl.textContent.trim() : null;
+        }
+      }
+      return null;
     });
 
     // Extract Grape Variety
     const grapeVariety = await page.evaluate(() => {
-      const element = document.querySelector('.prod-profile_rcs li:has-text("Grape Variety") .font-light-bold');
-      return element ? element.textContent.trim() : null;
+      const elements = document.querySelectorAll('.prod-profile_rcs li');
+      for (const el of elements) {
+        if (el.textContent.includes('Grape Variety')) {
+          const boldEl = el.querySelector('.font-light-bold');
+          return boldEl ? boldEl.textContent.trim() : null;
+        }
+      }
+      return null;
     });
 
     // Extract Food Pairing
     const foodPairing = await page.evaluate(() => {
-      const element = document.querySelector('.prod-profile_rcs li:has-text("Food Pairing") .font-light-bold');
-      return element ? element.textContent.trim() : null;
+      const elements = document.querySelectorAll('.prod-profile_rcs li');
+      for (const el of elements) {
+        if (el.textContent.includes('Food Pairing')) {
+          const boldEl = el.querySelector('.font-light-bold');
+          return boldEl ? boldEl.textContent.trim() : null;
+        }
+      }
+      return null;
     });
 
     console.log({
