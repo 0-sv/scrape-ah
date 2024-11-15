@@ -1,5 +1,6 @@
 const {chromium} = require('playwright');
-const fs = require('fs'); // Use for saving results to a file
+const fs = require('fs').promises; // For saving results to a file
+const path = require('path');
 
 (async () => {
     // Define a realistic user-agent
@@ -10,9 +11,9 @@ const fs = require('fs'); // Use for saving results to a file
         headless: false // Run in a non-headless mode so you can see what's happening
     });
 
-    // Create an incognito context (like a new browser session) for better isolation
+    // Create an incognito context (like a new browser session)
     const context = await browser.newContext({
-        userAgent,  // Set the user-agent here
+        userAgent, // Set the user agent here
         viewport: {
             width: 1280, // Set a desktop resolution
             height: 720
@@ -26,7 +27,7 @@ const fs = require('fs'); // Use for saving results to a file
 
     // Set some common HTTP headers often seen in regular browsing
     await page.setExtraHTTPHeaders({
-        'Accept-Language': 'en-US,en;q=0.9'
+        'Accept-Language': 'en-US,en;q=0.9',
     });
 
     // Random mouse movement can help make it look like real user interaction
@@ -36,23 +37,40 @@ const fs = require('fs'); // Use for saving results to a file
     const url = 'https://www.ah.nl/zoeken?query=wijn&page=52';
     await page.goto(url, {waitUntil: 'load'});
 
-    // Extract product and image pairs
-    const productImageMap = await page.$$eval('a', links => {
-        const productImgPairs = [];
+    // Extract product URL, image pairs, and prices
+    const productImagePriceMap = await page.$$eval('a', links => {
+        const productItems = [];
         links.forEach(link => {
             if (link.href.includes('/product/')) {
                 const img = link.querySelector('img[src^="https://static.ah.nl/"]');
-                if (img) {
+                const priceElement = link.closest('article')?.querySelector('[data-testhook="price-amount"] .sr-only[aria-label^="Prijs:"]');
+                console.log(priceElement)
+
+                if (img && priceElement) {
                     const productUrl = link.href;
                     const imgSrc = img.src;
-                    productImgPairs.push({productUrl, imgSrc});
+
+                    // Extract price from the aria-label
+                    const priceText = priceElement.getAttribute('aria-label');
+                    const price = parseFloat(priceText.replace(/[^\d,.-]+/g, '').replace(',', '.')); // Remove '€' and convert comma to dot
+
+                    productItems.push({productUrl, imgSrc, price});
                 }
             }
         });
-        return productImgPairs;
+        return productItems;
     });
 
     // Save the data to results.json
-    fs.writeFileSync('../results.json', JSON.stringify(productImageMap, null, 2));
-    console.log('The product-image pairs have been saved to "results.json".');
+    try {
+        const filePath = path.resolve(__dirname, '../results.json'); // Construct the correct file path
+        const data = JSON.stringify(productImagePriceMap, null, 2);  // Your data to write
+
+        // Use await to write the file
+        await fs.writeFile(filePath, data);
+
+        console.log('File successfully written!');
+    } catch (error) {
+        console.error('Error writing file:', error);
+    }
 })();
