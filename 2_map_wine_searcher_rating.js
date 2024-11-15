@@ -18,12 +18,9 @@ const {chromium} = require('playwright');
 
         // Get first product only
         const firstProduct = products[0];
-        const urlPath = new URL(firstProduct.productUrl).pathname;
-        const lastSegment = urlPath.split('/').pop();
-
-        // Visit wine-searcher.com with the product name
-        const wineSearcherUrl = `https://www.wine-searcher.com/find/${lastSegment}`;
-        await page.goto(wineSearcherUrl);
+        
+        // Visit wine-searcher.com using the pre-built URL
+        await page.goto(firstProduct.wineSearcherUrl);
 
         // Wait a bit to see the result
         await page.waitForTimeout(5000);
