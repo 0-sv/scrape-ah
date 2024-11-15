@@ -18,9 +18,10 @@ const randomDelay = async (min = 1000, max = 3000) => {
     // Define a realistic user-agent
     const userAgent = "Chrome/93.0.4577.63";
 
-    // Launch Chromium in headless mode, but with realistic settings
+    // Launch Chromium with persistent session
     const browser = await chromium.launch({
       headless: false, // Run in a non-headless mode so you can see what's happening
+      userDataDir: path.join(__dirname, '.playwright-data') // Store session data
     });
 
     // Create a new page directly from the browser
