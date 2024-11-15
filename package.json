@@ -12,6 +12,10 @@
     "@types/node": "^22.9.0"
   },
   "dependencies": {
-    "prettier": "^3.3.3"
+    "dotenv": "^16.4.5",
+    "playwright": "^1.48.2",
+    "playwright-extra": "^4.3.6",
+    "prettier": "^3.3.3",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
   }
 }

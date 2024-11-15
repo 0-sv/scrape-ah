@@ -4,14 +4,26 @@
     "imgSrc": "https://static.ah.nl/dam/product/AHI_43545239373234353235?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 7.69,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/mucho-mas-rood-tempranillo"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/mucho-mas-rood-tempranillo",
+    "criticScore": 88,
+    "userRating": 4,
+    "amountOfUserRatings": 4,
+    "style": "Red - Rich and Intense",
+    "grapeVariety": "Syrah - Tempranillo",
+    "foodPairing": "Lamb"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi163546/settesoli-pinot-grigio",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_4354523130313236313436?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 4.49,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/settesoli-pinot-grigio"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/settesoli-pinot-grigio",
+    "criticScore": 87,
+    "userRating": 3,
+    "amountOfUserRatings": 3,
+    "style": "White - Green and Flinty",
+    "grapeVariety": "Pinot Grigio",
+    "foodPairing": "White Fish"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi435813/ah-excellent-selectie-pinot-grigio",
@@ -25,98 +37,182 @@
     "imgSrc": "https://static.ah.nl/dam/product/AHI_43545239353632353733?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 3.74,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-biologisch-pinot-grigio"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-biologisch-pinot-grigio",
+    "criticScore": null,
+    "userRating": null,
+    "amountOfUserRatings": null,
+    "style": null,
+    "grapeVariety": null,
+    "foodPairing": null
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi52034/undurraga-chardonnay",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_4354523130303636383838?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 5.29,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/undurraga-chardonnay"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/undurraga-chardonnay",
+    "criticScore": 82,
+    "userRating": 3,
+    "amountOfUserRatings": 3,
+    "style": "White - Tropical and Balanced",
+    "grapeVariety": "Chardonnay",
+    "foodPairing": "Chicken and Turkey"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi473308/riporta-primitivo",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_4354523130303633323030?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 7.99,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/riporta-primitivo"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/riporta-primitivo",
+    "criticScore": null,
+    "userRating": 4.5,
+    "amountOfUserRatings": 4,
+    "style": "Red - Rich and Intense",
+    "grapeVariety": "Primitivo",
+    "foodPairing": "Beef and Venison"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi139788/fantini-puglia-primitivo",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_434d50303739373339?revLabel=5&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 4.49,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/fantini-puglia-primitivo"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/fantini-puglia-primitivo",
+    "criticScore": 86,
+    "userRating": 4.5,
+    "amountOfUserRatings": 4,
+    "style": "Red - Rich and Intense",
+    "grapeVariety": "Primitivo",
+    "foodPairing": "Beef and Venison"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi225278/mesta-tempranillo-organic-wine",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_4354523130303830353930?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 5.29,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/mesta-tempranillo-organic-wine"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/mesta-tempranillo-organic-wine",
+    "criticScore": 86,
+    "userRating": 3,
+    "amountOfUserRatings": 3,
+    "style": "Red - Rich and Intense",
+    "grapeVariety": "Tempranillo",
+    "foodPairing": "Lamb"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi200334/ogio-pinot-grigio",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_43545239363530323738?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 7.29,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/ogio-pinot-grigio"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/ogio-pinot-grigio",
+    "criticScore": 83,
+    "userRating": 3.5,
+    "amountOfUserRatings": 3,
+    "style": "White - Green and Flinty",
+    "grapeVariety": "Pinot Grigio",
+    "foodPairing": "White Fish"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi30539/undurraga-sauvignon-blanc",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_4354523130303936323130?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 5.29,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/undurraga-sauvignon-blanc"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/undurraga-sauvignon-blanc",
+    "criticScore": 83,
+    "userRating": 3,
+    "amountOfUserRatings": 3,
+    "style": "White - Green and Flinty",
+    "grapeVariety": "Sauvignon Blanc",
+    "foodPairing": "Salads and Green Vegetables"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi365217/ah-excellent-selectie-gruner-veltliner-kamptal",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_434d50323837313135?revLabel=2&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 7.99,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-excellent-selectie-gruner-veltliner-kamptal"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-excellent-selectie-gruner-veltliner-kamptal",
+    "criticScore": null,
+    "userRating": null,
+    "amountOfUserRatings": null,
+    "style": null,
+    "grapeVariety": null,
+    "foodPairing": null
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi132165/arrogant-frog-ribet-red-cabernet-sauvignon-merlot",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_43545239353934303738?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 7.99,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/arrogant-frog-ribet-red-cabernet-sauvignon-merlot"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/arrogant-frog-ribet-red-cabernet-sauvignon-merlot",
+    "criticScore": 86,
+    "userRating": 3,
+    "amountOfUserRatings": 3,
+    "style": "Red - Rich and Intense",
+    "grapeVariety": "Cabernet Sauvignon - Merlot",
+    "foodPairing": "Lamb"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi387103/ah-excellent-selectie-touraine-sauvignon-blanc",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_4354523130303636353738?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 7.69,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-excellent-selectie-touraine-sauvignon-blanc"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-excellent-selectie-touraine-sauvignon-blanc",
+    "criticScore": null,
+    "userRating": null,
+    "amountOfUserRatings": null,
+    "style": null,
+    "grapeVariety": null,
+    "foodPairing": null
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi419766/ah-excellent-selectie-sauvignon-blanc-falcon",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_43545237313130333539?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 8.69,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-excellent-selectie-sauvignon-blanc-falcon"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-excellent-selectie-sauvignon-blanc-falcon",
+    "criticScore": null,
+    "userRating": null,
+    "amountOfUserRatings": null,
+    "style": null,
+    "grapeVariety": null,
+    "foodPairing": null
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi440931/los-molinos-wit",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_4354523130303830373339?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 10.99,
     "unitSize": "3 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/los-molinos-wit"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/los-molinos-wit",
+    "criticScore": 81,
+    "userRating": 3,
+    "amountOfUserRatings": 3,
+    "style": "White - Tropical and Balanced",
+    "grapeVariety": "Macabeo (Viura)",
+    "foodPairing": "Chicken and Turkey"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi34361/undurraga-merlot",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_4354523130303936323132?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 5.29,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/undurraga-merlot"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/undurraga-merlot",
+    "criticScore": 82,
+    "userRating": 2.5,
+    "amountOfUserRatings": 2,
+    "style": "Red - Bold and Structured",
+    "grapeVariety": "Merlot",
+    "foodPairing": "Beef and Venison"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi166917/ah-biologisch-merlot",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_43545239373338313938?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 4.99,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-biologisch-merlot"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-biologisch-merlot",
+    "criticScore": null,
+    "userRating": null,
+    "amountOfUserRatings": null,
+    "style": null,
+    "grapeVariety": null,
+    "foodPairing": null
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi460315/mucho-mas-blanco",
@@ -130,98 +226,182 @@
     "imgSrc": "https://static.ah.nl/dam/product/AHI_4354523130303234333433?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 6.65,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/la-palma-chardonnay"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/la-palma-chardonnay",
+    "criticScore": 83,
+    "userRating": 3,
+    "amountOfUserRatings": 3,
+    "style": "White - Tropical and Balanced",
+    "grapeVariety": "Chardonnay",
+    "foodPairing": "Chicken and Turkey"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi55892/fantini-montepulciano-d-abruzzo",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_434d50303739373431?revLabel=4&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 4.49,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/fantini-montepulciano-d-abruzzo"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/fantini-montepulciano-d-abruzzo",
+    "criticScore": 87,
+    "userRating": 4,
+    "amountOfUserRatings": 4,
+    "style": "Red - Bold and Structured",
+    "grapeVariety": "Montepulciano",
+    "foodPairing": "Beef and Venison"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi419830/fantini-pecorino",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_43545239393639363939?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 4.49,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/fantini-pecorino"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/fantini-pecorino",
+    "criticScore": null,
+    "userRating": null,
+    "amountOfUserRatings": null,
+    "style": null,
+    "grapeVariety": null,
+    "foodPairing": null
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi222369/ah-merlot",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_43545239373837393335?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 2.29,
     "unitSize": "250 ml",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-merlot"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-merlot",
+    "criticScore": null,
+    "userRating": null,
+    "amountOfUserRatings": null,
+    "style": null,
+    "grapeVariety": null,
+    "foodPairing": null
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi440705/castano-monstrell-organic",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_4354523130303934333032?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 4.99,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/castano-monstrell-organic"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/castano-monstrell-organic",
+    "criticScore": 86,
+    "userRating": 2.5,
+    "amountOfUserRatings": 2,
+    "style": "Red - Rich and Intense",
+    "grapeVariety": "Monastrell",
+    "foodPairing": "Lamb"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi440882/mastri-vernacoli-pinot-grigio",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_4354523130303936323234?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 5.62,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/mastri-vernacoli-pinot-grigio"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/mastri-vernacoli-pinot-grigio",
+    "criticScore": 92,
+    "userRating": 3.5,
+    "amountOfUserRatings": 3,
+    "style": "White - Green and Flinty",
+    "grapeVariety": "Pinot Grigio",
+    "foodPairing": "White Fish"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi128232/aliwen-chardonnay-reserva",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_43545236313939393535?revLabel=2&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 6.65,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/aliwen-chardonnay-reserva"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/aliwen-chardonnay-reserva",
+    "criticScore": 86,
+    "userRating": 3,
+    "amountOfUserRatings": 3,
+    "style": "White - Tropical and Balanced",
+    "grapeVariety": "Chardonnay",
+    "foodPairing": "Chicken and Turkey"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi93744/alamos-malbec",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_43545239393632353538?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 8.49,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/alamos-malbec"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/alamos-malbec",
+    "criticScore": 87,
+    "userRating": 3.5,
+    "amountOfUserRatings": 3,
+    "style": "Red - Rich and Intense",
+    "grapeVariety": "Malbec",
+    "foodPairing": "Beef and Venison"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi225279/mesta-verdejo-organic-wine",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_4354523130303936323332?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 5.29,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/mesta-verdejo-organic-wine"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/mesta-verdejo-organic-wine",
+    "criticScore": 86,
+    "userRating": 4.5,
+    "amountOfUserRatings": 4,
+    "style": "White - Tropical and Balanced",
+    "grapeVariety": "Verdejo",
+    "foodPairing": "Chicken and Turkey"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi195925/campo-viejo-rioja-reserva",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_43545239363330333233?revLabel=2&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 9.99,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/campo-viejo-rioja-reserva"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/campo-viejo-rioja-reserva",
+    "criticScore": 87,
+    "userRating": 3.5,
+    "amountOfUserRatings": 3,
+    "style": "Red - Savory and Classic",
+    "grapeVariety": "Tempranillo",
+    "foodPairing": "Lamb"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi192803/stormhoek-pinot-grigio",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_434d50303236333438?revLabel=7&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 5.29,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/stormhoek-pinot-grigio"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/stormhoek-pinot-grigio",
+    "criticScore": 85,
+    "userRating": 3.5,
+    "amountOfUserRatings": 3,
+    "style": "White - Green and Flinty",
+    "grapeVariety": "Pinot Grigio",
+    "foodPairing": "Goats' Cheese and Feta"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi128222/wild-pig-chardonnay",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_4354523130303634343532?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 5.99,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/wild-pig-chardonnay"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/wild-pig-chardonnay",
+    "criticScore": 83,
+    "userRating": 3,
+    "amountOfUserRatings": 3,
+    "style": "White - Tropical and Balanced",
+    "grapeVariety": "Chardonnay",
+    "foodPairing": "Chicken and Turkey"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi141653/fat-bastard-chardonnay",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_4354523130303938333238?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 5.79,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/fat-bastard-chardonnay"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/fat-bastard-chardonnay",
+    "criticScore": null,
+    "userRating": null,
+    "amountOfUserRatings": null,
+    "style": null,
+    "grapeVariety": null,
+    "foodPairing": null
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi222355/ah-stevige-chileense-huiswijn-rood",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_4354523130303233343930?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 4.69,
     "unitSize": "1 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-stevige-chileense-huiswijn-rood"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-stevige-chileense-huiswijn-rood",
+    "criticScore": null,
+    "userRating": null,
+    "amountOfUserRatings": null,
+    "style": null,
+    "grapeVariety": null,
+    "foodPairing": null
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi419990/ah-excellent-selectie-cangrande-valpolicella-ripasso",
@@ -235,77 +415,143 @@
     "imgSrc": "https://static.ah.nl/dam/product/AHI_4354523130303934333033?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 8.99,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/19-crimes-chardonnay"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/19-crimes-chardonnay",
+    "criticScore": 86,
+    "userRating": 4,
+    "amountOfUserRatings": 4,
+    "style": "White - Buttery and Complex",
+    "grapeVariety": "Chardonnay",
+    "foodPairing": "Mushrooms"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi222357/ah-fris-en-droge-franse-huiswijn-wit",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_43545239393837333038?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 4.89,
     "unitSize": "1 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-fris-en-droge-franse-huiswijn-wit"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-fris-en-droge-franse-huiswijn-wit",
+    "criticScore": null,
+    "userRating": null,
+    "amountOfUserRatings": null,
+    "style": null,
+    "grapeVariety": null,
+    "foodPairing": null
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi93757/valdivieso-chardonnay",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_43545239363437393736?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 6.65,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/valdivieso-chardonnay"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/valdivieso-chardonnay",
+    "criticScore": 84,
+    "userRating": 3,
+    "amountOfUserRatings": 3,
+    "style": "White - Tropical and Balanced",
+    "grapeVariety": "Chardonnay",
+    "foodPairing": "Chicken and Turkey"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi166919/ah-biologisch-sauvignon-blanc",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_434d50303633343934?revLabel=4&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 4.99,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-biologisch-sauvignon-blanc"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-biologisch-sauvignon-blanc",
+    "criticScore": null,
+    "userRating": null,
+    "amountOfUserRatings": null,
+    "style": null,
+    "grapeVariety": null,
+    "foodPairing": null
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi365949/sarmentino-merlot",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_4354525f36303935343939?revLabel=2&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 2.99,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/sarmentino-merlot"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/sarmentino-merlot",
+    "criticScore": null,
+    "userRating": null,
+    "amountOfUserRatings": null,
+    "style": null,
+    "grapeVariety": null,
+    "foodPairing": null
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi435814/ah-excellent-selectie-prosecco",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_43545239393130333637?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 5.99,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-excellent-selectie-prosecco"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-excellent-selectie-prosecco",
+    "criticScore": null,
+    "userRating": null,
+    "amountOfUserRatings": null,
+    "style": null,
+    "grapeVariety": null,
+    "foodPairing": null
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi436995/sarmentino-pinot-grigio",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_434d5039373830323531?revLabel=3&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 3.14,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/sarmentino-pinot-grigio"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/sarmentino-pinot-grigio",
+    "criticScore": null,
+    "userRating": null,
+    "amountOfUserRatings": null,
+    "style": null,
+    "grapeVariety": null,
+    "foodPairing": null
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi30538/undurraga-cabernet-sauvignon",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_43545239353539353730?revLabel=3&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 5.29,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/undurraga-cabernet-sauvignon"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/undurraga-cabernet-sauvignon",
+    "criticScore": 82,
+    "userRating": 3,
+    "amountOfUserRatings": 3,
+    "style": "Red - Bold and Structured",
+    "grapeVariety": "Cabernet Sauvignon",
+    "foodPairing": "Beef and Venison"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi440708/fantini-puglia-rosso",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_4b525436303032353633?revLabel=6&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 4.49,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/fantini-puglia-rosso"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/fantini-puglia-rosso",
+    "criticScore": null,
+    "userRating": null,
+    "amountOfUserRatings": null,
+    "style": null,
+    "grapeVariety": null,
+    "foodPairing": null
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi222373/ah-sauvignon-blanc",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_4354523130303934333035?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 2.29,
     "unitSize": "250 ml",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-sauvignon-blanc"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/ah-sauvignon-blanc",
+    "criticScore": null,
+    "userRating": null,
+    "amountOfUserRatings": null,
+    "style": null,
+    "grapeVariety": null,
+    "foodPairing": null
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi160698/campo-viejo-rioja-tempranillo",
     "imgSrc": "https://static.ah.nl/dam/product/AHI_4354523130303936323238?revLabel=1&rendition=200x200_JPG_Q85&fileType=binary",
     "price": 7.29,
     "unitSize": "0,75 l",
-    "wineSearcherUrl": "https://www.wine-searcher.com/find/campo-viejo-rioja-tempranillo"
+    "wineSearcherUrl": "https://www.wine-searcher.com/find/campo-viejo-rioja-tempranillo",
+    "criticScore": 86,
+    "userRating": 3.5,
+    "amountOfUserRatings": 3,
+    "style": "Red - Savory and Classic",
+    "grapeVariety": "Tempranillo",
+    "foodPairing": "Lamb"
   },
   {
     "productUrl": "https://www.ah.nl/producten/product/wi411747/ah-excellent-selectie-rueda-verdejo-palacio-almirante",
