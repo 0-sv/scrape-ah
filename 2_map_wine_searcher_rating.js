@@ -5,7 +5,7 @@ const { chromium } = require("playwright");
 // Helper function to create a random delay
 const randomDelay = async (min = 1000, max = 3000) => {
   const delay = Math.floor(Math.random() * (max - min + 1) + min);
-  await new Promise(resolve => setTimeout(resolve, delay));
+  await new Promise((resolve) => setTimeout(resolve, delay));
 };
 
 (async () => {
@@ -18,19 +18,18 @@ const randomDelay = async (min = 1000, max = 3000) => {
     // Define a realistic user-agent
     const userAgent = "Chrome/93.0.4577.63";
 
-    // Launch Chromium with persistent session
+    // Launch Chromium in headless mode, but with realistic settings
     const browser = await chromium.launch({
       headless: false, // Run in a non-headless mode so you can see what's happening
-      userDataDir: path.join(__dirname, '.playwright-data') // Store session data
     });
 
     // Create a new page directly from the browser
     const page = await browser.newPage();
-    
+
     // Configure the page
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.setExtraHTTPHeaders({
-      'User-Agent': userAgent
+      "User-Agent": userAgent,
     });
 
     // Get first product only
@@ -38,15 +37,12 @@ const randomDelay = async (min = 1000, max = 3000) => {
 
     // Visit wine-searcher.com using the pre-built URL
     await page.goto(firstProduct.wineSearcherUrl);
-    
+
     // Random delay after page load
     await randomDelay(2000, 4000);
 
     // Perform some random mouse movements
-    await page.mouse.move(
-      Math.random() * 1000,
-      Math.random() * 500
-    );
+    await page.mouse.move(Math.random() * 1000, Math.random() * 500);
 
     // Scroll down slowly like a human
     await page.evaluate(() => {
@@ -56,8 +52,8 @@ const randomDelay = async (min = 1000, max = 3000) => {
         const timer = setInterval(() => {
           window.scrollBy(0, distance);
           totalHeight += distance;
-          
-          if(totalHeight >= document.body.scrollHeight * 0.7){
+
+          if (totalHeight >= document.body.scrollHeight * 0.7) {
             clearInterval(timer);
             resolve();
           }
@@ -69,14 +65,11 @@ const randomDelay = async (min = 1000, max = 3000) => {
 
     // Wait for the profile section to load
     await page.waitForSelector(".prod-profile_rcs");
-    
+
     // Move mouse to the profile section
     const profileElement = await page.$(".prod-profile_rcs");
     const box = await profileElement.boundingBox();
-    await page.mouse.move(
-      box.x + box.width / 2,
-      box.y + box.height / 2
-    );
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
 
     // Extract Critic Score
     const criticScore = await page.evaluate(() => {
@@ -140,14 +133,25 @@ const randomDelay = async (min = 1000, max = 3000) => {
       return null;
     });
 
-    console.log({
+    // Create a new object for the scraped data
+    const scrapedData = {
       criticScore,
       userRating,
       amountOfUserRatings,
       style,
       grapeVariety,
       foodPairing,
-    });
+    };
+
+    console.log(JSON.stringify(scrapedData, null, 2));
+
+    // Merge the scraped data with the first product data
+    Object.assign(firstProduct, scrapedData);
+
+    // Write back the entire array of products to results.json
+    await fs.writeFile(filePath, JSON.stringify(products, null, 2));
+
+    console.log("File successfully written!");
   } catch (error) {
     console.error("Error:", error);
   }
