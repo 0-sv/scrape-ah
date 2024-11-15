@@ -72,7 +72,7 @@ const path = require('path');
 
     // Save the data to results.json
     try {
-        const filePath = path.resolve(__dirname, '../results.json'); // Construct the correct file path
+        const filePath = path.resolve(__dirname, 'results.json'); // Construct the correct file path
         const data = JSON.stringify(productImagePriceMap, null, 2);  // Your data to write
 
         // Use await to write the file
