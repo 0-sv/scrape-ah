@@ -1,54 +1,58 @@
-const { chromium } = require('playwright'); // You can also use firefox or webkit
+const {chromium} = require('playwright');
+const fs = require('fs'); // Use for saving results to a file
 
 (async () => {
-    // Launch Chromium browser
-    const browser = await chromium.launch({ headless: false });
-    const page = await browser.newPage();
+    // Define a realistic user-agent
+    const userAgent = 'Chrome/93.0.4577.63';
 
-    const url = 'https://www.ah.nl/zoeken?query=wijn&page=1';
-    await page.goto(url, { waitUntil: 'load' });
-    try {
-        // Adjust this selector if needed (this assumes an element with id="accept-cookies")
-        await page.waitForSelector('#accept-cookies', { timeout: 5000 });
-        await page.click('#accept-cookies');
-        console.log("Clicked the 'Accept Cookies' button");
-    } catch (err) {
-        console.log("'Accept Cookies' button not found, proceeding...");
-    }
+    // Launch Chromium in headless mode, but with realistic settings
+    const browser = await chromium.launch({
+        headless: false // Run in a non-headless mode so you can see what's happening
+    });
 
-    // Wait for the page to load completely if needed (adjust selector if necessary)
-    await page.waitForSelector('a', { timeout: 5000 }); // Wait for any 'a' elements on the page
-    // code
+    // Create an incognito context (like a new browser session) for better isolation
+    const context = await browser.newContext({
+        userAgent,  // Set the user-agent here
+        viewport: {
+            width: 1280, // Set a desktop resolution
+            height: 720
+        },
+        locale: 'nl-NL', // Set a realistic locale
+        timezoneId: 'Europe/Amsterdam', // Set a correct timezone based on location
+        deviceScaleFactor: 1, // Standard scale
+    });
+
+    const page = await context.newPage();
+
+    // Set some common HTTP headers often seen in regular browsing
+    await page.setExtraHTTPHeaders({
+        'Accept-Language': 'en-US,en;q=0.9'
+    });
+
+    // Random mouse movement can help make it look like real user interaction
+    await page.mouse.move(100, 100); // Simulate a simple mouse move at the start
+
+    // Navigate to the site
+    const url = 'https://www.ah.nl/zoeken?query=wijn&page=52';
+    await page.goto(url, {waitUntil: 'load'});
 
     // Extract product and image pairs
     const productImageMap = await page.$$eval('a', links => {
-        // Create an array to store the product and image map
         const productImgPairs = [];
-
-        // Loop through each anchor (`<a>`) element
         links.forEach(link => {
-            // Check if the <a> contains '/product/' in its href
             if (link.href.includes('/product/')) {
-                // Check for an <img> that contains 'https://static.ah.nl/' in its src
                 const img = link.querySelector('img[src^="https://static.ah.nl/"]');
-
-                // If a matching <img> is found, push the href and corresponding image src to the array
                 if (img) {
                     const productUrl = link.href;
                     const imgSrc = img.src;
-                    productImgPairs.push({ productUrl, imgSrc });
+                    productImgPairs.push({productUrl, imgSrc});
                 }
             }
         });
-
         return productImgPairs;
     });
 
-    // Print the product and image mapping
-    console.log('Product and Image Mapping:');
-    productImageMap.forEach(({ productUrl, imgSrc }) => {
-        console.log(`Product: ${productUrl}, Image: ${imgSrc}`);
-    });
-
-
+    // Save the data to results.json
+    fs.writeFileSync('results.json', JSON.stringify(productImageMap, null, 2));
+    console.log('The product-image pairs have been saved to "results.json".');
 })();
