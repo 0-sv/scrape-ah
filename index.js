@@ -2,44 +2,53 @@ const { chromium } = require('playwright'); // You can also use firefox or webki
 
 (async () => {
     // Launch Chromium browser
-    const browser = await chromium.launch({ headless: true });
+    const browser = await chromium.launch({ headless: false });
     const page = await browser.newPage();
 
     const url = 'https://www.ah.nl/zoeken?query=wijn&page=1';
-
-    // Navigate to the URL
     await page.goto(url, { waitUntil: 'load' });
+    try {
+        // Adjust this selector if needed (this assumes an element with id="accept-cookies")
+        await page.waitForSelector('#accept-cookies', { timeout: 5000 });
+        await page.click('#accept-cookies');
+        console.log("Clicked the 'Accept Cookies' button");
+    } catch (err) {
+        console.log("'Accept Cookies' button not found, proceeding...");
+    }
 
-    // Wait for the product listings to load on the page
-    await page.waitForSelector('.search-shelf-product');
+    // Wait for the page to load completely if needed (adjust selector if necessary)
+    await page.waitForSelector('a', { timeout: 5000 }); // Wait for any 'a' elements on the page
+    // code
 
-    // Extract wine data
-    const wines = await page.evaluate(() => {
-        // Select all product elements
-        const items = document.querySelectorAll('.search-shelf-product');
+    // Extract product and image pairs
+    const productImageMap = await page.$$eval('a', links => {
+        // Create an array to store the product and image map
+        const productImgPairs = [];
 
-        let wineData = [];
+        // Loop through each anchor (`<a>`) element
+        links.forEach(link => {
+            // Check if the <a> contains '/product/' in its href
+            if (link.href.includes('/product/')) {
+                // Check for an <img> that contains 'https://static.ah.nl/' in its src
+                const img = link.querySelector('img[src^="https://static.ah.nl/"]');
 
-        // Extract data from each product item
-        items.forEach(item => {
-            const name = item.querySelector('.title')?.innerText || 'No name';
-            const priceElement = item.querySelector('.price-amount');
-            const price = priceElement?.innerText ? `${priceElement.innerText} ${priceElement.nextSibling.textContent.trim()}` : "No price";
-            const link = item.querySelector('a')?.href || 'No link';
-
-            wineData.push({
-                name,
-                price,
-                link
-            });
+                // If a matching <img> is found, push the href and corresponding image src to the array
+                if (img) {
+                    const productUrl = link.href;
+                    const imgSrc = img.src;
+                    productImgPairs.push({ productUrl, imgSrc });
+                }
+            }
         });
 
-        return wineData;
+        return productImgPairs;
     });
 
-    // Log the wine data as result
-    console.log(wines);
+    // Print the product and image mapping
+    console.log('Product and Image Mapping:');
+    productImageMap.forEach(({ productUrl, imgSrc }) => {
+        console.log(`Product: ${productUrl}, Image: ${imgSrc}`);
+    });
 
-    // Close the browser after completion
-    await browser.close();
+
 })();
