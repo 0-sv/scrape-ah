@@ -55,9 +55,11 @@ const stealth = require("puppeteer-extra-plugin-stealth")();
 
         if (hasCaptcha) {
           console.log(
-            "Captcha detected - opening new window and continuing...",
+            "Captcha detected - clearing cookies and opening new window...",
           );
           await page.close();
+          const context = browser.contexts()[0];
+          await context.clearCookies();
           page = await browser.newPage();
           await page.setViewportSize({ width: 1280, height: 720 });
           await page.goto(product.wineSearcherUrl);
