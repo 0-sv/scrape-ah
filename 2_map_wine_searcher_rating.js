@@ -5,11 +5,6 @@ require("dotenv").config();
 
 const stealth = require("puppeteer-extra-plugin-stealth")();
 
-// Helper function to create a random delay
-const randomDelay = async (min = 1000, max = 3000) => {
-  const delay = Math.floor(Math.random() * (max - min + 1) + min);
-  await new Promise((resolve) => setTimeout(resolve, delay));
-};
 
 (async () => {
   let lastProcessedIndex = -1;
@@ -54,30 +49,6 @@ const randomDelay = async (min = 1000, max = 3000) => {
         // Visit wine-searcher.com using the pre-built URL
         await page.goto(product.wineSearcherUrl);
 
-        // Random delay after page load
-        await randomDelay(2000, 4000);
-
-        // Perform some random mouse movements
-        await page.mouse.move(Math.random() * 1000, Math.random() * 500);
-
-        // Scroll down slowly like a human
-        await page.evaluate(() => {
-          return new Promise((resolve) => {
-            let totalHeight = 0;
-            const distance = 100;
-            const timer = setInterval(() => {
-              window.scrollBy(0, distance);
-              totalHeight += distance;
-
-              if (totalHeight >= document.body.scrollHeight * 0.7) {
-                clearInterval(timer);
-                resolve();
-              }
-            }, 100);
-          });
-        });
-
-        await randomDelay();
 
         // Check if page shows "Showing results for"
         const hasSearchResults = await page.evaluate(() => {
@@ -99,17 +70,12 @@ const randomDelay = async (min = 1000, max = 3000) => {
           Object.assign(product, scrapedData);
           await fs.writeFile(filePath, JSON.stringify(products, null, 2));
           lastProcessedIndex = i;
-          await randomDelay(3000, 5000);
           continue;
         }
 
         // Wait for the profile section to load
         await page.waitForSelector(".prod-profile_rcs");
 
-        // Move mouse to the profile section
-        const profileElement = await page.$(".prod-profile_rcs");
-        const box = await profileElement.boundingBox();
-        await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
 
         // Extract Critic Score
         const criticScore = await page.evaluate(() => {
@@ -192,8 +158,6 @@ const randomDelay = async (min = 1000, max = 3000) => {
         await fs.writeFile(filePath, JSON.stringify(products, null, 2));
         lastProcessedIndex = i;
 
-        // Add a delay between requests
-        await randomDelay(3000, 5000);
       } catch (error) {
         console.error(`Error processing product ${i + 1}:`, error);
         throw error;
