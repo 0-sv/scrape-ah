@@ -5,7 +5,6 @@ require("dotenv").config();
 
 const stealth = require("puppeteer-extra-plugin-stealth")();
 
-
 (async () => {
   let lastProcessedIndex = -1;
   chromium.use(stealth);
@@ -25,7 +24,7 @@ const stealth = require("puppeteer-extra-plugin-stealth")();
     });
 
     // Create a new page directly from the browser
-    const page = await browser.newPage();
+    let page = await browser.newPage();
 
     // Configure the page
     await page.setViewportSize({ width: 1280, height: 720 });
@@ -36,8 +35,8 @@ const stealth = require("puppeteer-extra-plugin-stealth")();
     let lastProcessedIndex = -1;
 
     // Loop through all products
-    const startIndex = process.env.INITIAL_ITEM_TO_PROCESS
-      ? parseInt(process.env.INITIAL_ITEM_TO_PROCESS)
+    const startIndex = process.env.LAST_ITEM_PROCESSED
+      ? parseInt(process.env.LAST_ITEM_PROCESSED)
       : 0;
     for (let i = startIndex; i < products.length; i++) {
       try {
@@ -51,11 +50,13 @@ const stealth = require("puppeteer-extra-plugin-stealth")();
 
         // Check for captcha
         const hasCaptcha = await page.evaluate(() => {
-          return document.body.textContent.includes("Verify you are human");
+          return document.body.textContent.includes("Press & Hold");
         });
 
         if (hasCaptcha) {
-          console.log("Captcha detected - opening new window and continuing...");
+          console.log(
+            "Captcha detected - opening new window and continuing...",
+          );
           await page.close();
           page = await browser.newPage();
           await page.setViewportSize({ width: 1280, height: 720 });
@@ -87,7 +88,6 @@ const stealth = require("puppeteer-extra-plugin-stealth")();
 
         // Wait for the profile section to load
         await page.waitForSelector(".prod-profile_rcs");
-
 
         // Extract Critic Score
         const criticScore = await page.evaluate(() => {
@@ -169,7 +169,6 @@ const stealth = require("puppeteer-extra-plugin-stealth")();
         // Write back after each successful scrape
         await fs.writeFile(filePath, JSON.stringify(products, null, 2));
         lastProcessedIndex = i;
-
       } catch (error) {
         console.error(`Error processing product ${i + 1}:`, error);
         throw error;
