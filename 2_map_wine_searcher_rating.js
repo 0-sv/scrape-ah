@@ -35,7 +35,7 @@ const randomDelay = async (min = 1000, max = 3000) => {
     let lastProcessedIndex = -1;
 
     // Loop through all products
-    for (let i = 2; i < products.length; i++) {
+    for (let i = 3; i < products.length; i++) {
       try {
         const product = products[i];
         console.log(
@@ -72,18 +72,20 @@ const randomDelay = async (min = 1000, max = 3000) => {
 
         // Check if page shows "Showing results for"
         const hasSearchResults = await page.evaluate(() => {
-          return document.body.textContent.includes('Showing results for');
+          return document.body.textContent.includes("Showing results for");
         });
 
         if (hasSearchResults) {
-          console.log('Search results page detected - skipping detailed scraping');
+          console.log(
+            "Search results page detected - skipping detailed scraping",
+          );
           const scrapedData = {
             criticScore: null,
             userRating: null,
             amountOfUserRatings: null,
             style: null,
             grapeVariety: null,
-            foodPairing: null
+            foodPairing: null,
           };
           Object.assign(product, scrapedData);
           await fs.writeFile(filePath, JSON.stringify(products, null, 2));
